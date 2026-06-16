@@ -1,0 +1,893 @@
+/* ============================================================
+   Clínica Dr. Primor da Silva — Folha de Estilos Base
+   Torres Vedras · Santa Cruz · Portugal
+   ============================================================ */
+
+:root {
+  --primary:   #1a5f7a;   /* azul petróleo */
+  --secondary: #57c5b6;   /* verde-água */
+  --accent:    #e8f4f8;   /* azul muito claro */
+  --dark:      #1e2d3d;
+  --text:      #3a3a3a;
+  --light:     #f8fcfd;
+  --white:     #ffffff;
+  --border:    #dceef4;
+  --font-body: 'Lato', 'Segoe UI', Arial, sans-serif;
+  --font-head: 'Playfair Display', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--secondary); text-decoration: underline; }
+
+/* ---- HEADER ---- */
+header {
+  background: var(--white);
+  border-bottom: 3px solid var(--secondary);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+.header-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 150px;
+}
+
+/* ---- LOGO ---- */
+/* Image left, text right, 2.5rem left margin */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  padding-left: 2.5rem;     /* ~2–3 cm left margin */
+  text-decoration: none !important;
+}
+.logo:hover { text-decoration: none !important; }
+
+/* Logo image */
+.logo-img {
+  height: 120px;            /* slightly inset so it breathes within the 150px header */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Vertical divider between image and text */
+.logo-divider {
+  width: 1.5px;
+  height: 50px;
+  background: var(--border);
+  flex-shrink: 0;
+  margin: 0 .25rem;
+}
+
+/* Logo text */
+.logo-text h1 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  color: var(--primary);
+  line-height: 1.25;
+  white-space: nowrap;
+  margin: 0;
+}
+.logo-text span {
+  font-size: .75rem;
+  color: #888;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  display: block;
+  margin-top: .2rem;
+}
+
+/* Nav — centred in the remaining header space */
+header nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-right: 1.5rem;    /* slight right offset so CTA button doesn't hug the edge */
+}
+
+/* ---- HERO COM FOTO ---- */
+.hero {
+  position: relative;
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* A foto é colocada via background-image inline no HTML */
+  background-color: var(--primary); /* fallback se foto não carregar */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay escuro gradiente sobre a foto */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 28, 45, 0.60) 0%,
+    rgba(8, 28, 45, 0.50) 50%,
+    rgba(8, 28, 45, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+/* Conteúdo centrado sobre o overlay */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+/* Logótipo no hero */
+.hero-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.hero-logo-img {
+  max-width: 380px;
+  width: 85%;
+  height: auto;
+  filter: drop-shadow(0 6px 28px rgba(0,0,0,.55));
+  transition: transform .3s;
+}
+.hero-logo-img:hover { transform: scale(1.02); }
+
+/* Fallback texto — quando não há imagem de logo */
+.hero-logo-text {
+  display: none; /* mostrar apenas se imagem falhar */
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+.hero-logo-text .hl-pre {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--secondary);
+  font-weight: 700;
+}
+.hero-logo-text .hl-name {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: #fff;
+  line-height: 1.15;
+  text-shadow: 0 3px 16px rgba(0,0,0,.5);
+}
+.hero-logo-text .hl-loc {
+  font-size: .9rem;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .06em;
+}
+
+/* Divisor decorativo entre logo e botões */
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--secondary);
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+  opacity: .8;
+}
+
+nav ul { list-style: none; display: flex; gap: 1.1rem; flex-wrap: nowrap; align-items: center; }
+nav ul li a {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  padding: .25rem .15rem;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+}
+nav ul li a:hover, nav ul li a.active {
+  color: var(--primary);
+  border-bottom-color: var(--secondary);
+  text-decoration: none;
+}
+
+/* ── "Marcar Consulta" — standalone CTA anchored to the right ── */
+.header-cta {
+  flex-shrink: 0;
+  margin-left: auto;          /* pushes itself to the far right */
+  margin-right: 2rem;         /* breathing room from the right edge */
+  background: var(--secondary);
+  color: var(--white) !important;
+  padding: .65rem 1.4rem;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: .92rem;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: background .2s, transform .15s;
+  display: inline-block;
+  line-height: 1.4;
+}
+.header-cta:hover {
+  background: var(--primary);
+  transform: translateY(-1px);
+  text-decoration: none !important;
+  color: var(--white) !important;
+}
+
+/* Keep old .btn-cta for mobile overlay only */
+.btn-cta {
+  background: var(--secondary);
+  color: var(--white) !important;
+  padding: .55rem 1.2rem !important;
+  border-radius: 6px;
+  border: none !important;
+  font-weight: 700 !important;
+  transition: background .2s !important;
+}
+.btn-cta:hover { background: var(--primary) !important; }
+
+/* ---- HERO (desktop fallback gradient — overridden by inline bg-image) ---- */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #0d3f55 100%);
+  color: var(--white);
+  text-align: center;
+}
+.hero h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.hero p { font-size: 1.15rem; max-width: 640px; margin: 0 auto 2rem; opacity: .9; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--secondary);
+  color: var(--white);
+  padding: .85rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform .2s, background .2s;
+}
+.btn-primary:hover { background: #3aada0; transform: translateY(-2px); text-decoration: none; color: #fff; }
+.btn-outline {
+  border: 2px solid var(--white);
+  color: var(--white);
+  padding: .85rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background .2s;
+}
+.btn-outline:hover { background: rgba(255,255,255,.15); text-decoration: none; color: #fff; }
+
+/* ---- SECTIONS ---- */
+section { padding: 4rem 2rem; }
+.container { max-width: 1100px; margin: auto; }
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--primary);
+  margin-bottom: .5rem;
+}
+.section-sub { color: #666; margin-bottom: 2.5rem; font-size: 1.05rem; }
+.divider {
+  width: 60px; height: 4px;
+  background: var(--secondary);
+  border-radius: 2px;
+  margin: .75rem 0 1.5rem;
+}
+
+/* ---- SERVIÇOS GRID ---- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  transition: transform .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--secondary);
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+.service-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.service-card h3 { font-family: var(--font-head); color: var(--primary); margin-bottom: .5rem; font-size: 1.2rem; }
+.service-card p { font-size: .95rem; color: #555; line-height: 1.65; }
+.service-card a.card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* ---- PAGE HERO (páginas internas) ---- */
+.page-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #0d3f55 100%);
+  color: var(--white);
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+.page-hero .breadcrumb { font-size: .85rem; opacity: .75; margin-bottom: .75rem; }
+.page-hero .breadcrumb a { color: var(--white); }
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  margin-bottom: .75rem;
+}
+.page-hero .tagline { font-size: 1.1rem; opacity: .9; max-width: 600px; margin: auto; }
+
+/* ---- CONTENT LAYOUT ---- */
+.content-wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: start;
+}
+/* (Responsive stacking handled in the media queries below) */
+.main-content h2 {
+  font-family: var(--font-head);
+  color: var(--primary);
+  font-size: 1.6rem;
+  margin: 2rem 0 .75rem;
+}
+.main-content h3 {
+  color: var(--dark);
+  font-size: 1.15rem;
+  margin: 1.5rem 0 .5rem;
+}
+.main-content p { margin-bottom: 1rem; }
+.main-content ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+.main-content ul li { margin-bottom: .4rem; }
+
+/* ---- SIDEBAR ---- */
+.sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.sidebar-card {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+.sidebar-card h4 {
+  font-family: var(--font-head);
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.sidebar-card ul { list-style: none; }
+.sidebar-card ul li {
+  padding: .35rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .95rem;
+}
+.sidebar-card ul li:last-child { border: none; }
+.sidebar-card ul li a { color: var(--primary); font-weight: 600; }
+.btn-marcacao {
+  display: block;
+  background: var(--secondary);
+  color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: background .2s;
+}
+.btn-marcacao:hover { background: var(--primary); text-decoration: none; color: #fff; }
+.contact-info { font-size: .95rem; line-height: 2; }
+
+/* ---- MÉDICO CARD ---- */
+.doctor-card {
+  background: var(--light);
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  margin: 2rem 0;
+}
+.doctor-avatar {
+  width: 80px; height: 104px;
+  border-radius: 50%;
+  background: var(--secondary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.doctor-info h3 { color: var(--primary); margin-bottom: .25rem; }
+.doctor-info .title { font-size: .9rem; color: var(--secondary); font-weight: 700; margin-bottom: .5rem; }
+.doctor-info p { font-size: .92rem; color: #555; }
+
+/* ---- LISTA DE TRATAMENTOS ---- */
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.treatment-item {
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--secondary);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* ---- FAQ ---- */
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.faq-q {
+  background: var(--accent);
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+}
+.faq-a {
+  padding: 1rem 1.25rem;
+  font-size: .95rem;
+  color: #555;
+}
+
+/* ---- INFO BOXES ---- */
+.info-box {
+  background: var(--accent);
+  border-left: 5px solid var(--secondary);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  font-size: .95rem;
+}
+.info-box strong { color: var(--primary); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,.8);
+  padding: 3rem 2rem 1.5rem;
+  font-size: .9rem;
+}
+.footer-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.footer-col h4 { color: var(--secondary); margin-bottom: 1rem; font-size: .95rem; text-transform: uppercase; letter-spacing: .06em; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: .4rem; }
+.footer-col ul li a { color: rgba(255,255,255,.7); }
+.footer-col ul li a:hover { color: var(--secondary); }
+.footer-bottom {
+  max-width: 1100px;
+  margin: 1.5rem auto 0;
+  text-align: center;
+  font-size: .8rem;
+  color: rgba(255,255,255,.4);
+}
+
+/* ---- WHATSAPP FLOATING BUTTON ---- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: #25D366;
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: 50px;
+  box-shadow: 0 6px 24px rgba(37,211,102,.45);
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+  animation: pulse-wa 2.5s infinite;
+}
+.whatsapp-float:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(37,211,102,.55);
+  text-decoration: none;
+  color: #fff;
+}
+.whatsapp-float svg { width: 26px; height: 26px; flex-shrink: 0; }
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.45); }
+  50%       { box-shadow: 0 6px 32px rgba(37,211,102,.75); }
+}
+/* WhatsApp pill → circle on mobile (handled in responsive section below) */
+
+/* ---- TOP BAR ---- */
+.top-bar {
+  background: var(--primary);
+  color: rgba(255,255,255,.85);
+  font-size: .82rem;
+  padding: .4rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.top-bar a { color: rgba(255,255,255,.9); font-weight: 600; }
+.top-bar a:hover { color: var(--secondary); text-decoration: none; }
+
+
+/* ============================================================
+   RESPONSIVE — Mobile & Tablet  (added for full responsiveness)
+   Breakpoints: 1024 · 768 · 480 · 360
+   ============================================================ */
+
+/* Prevent any horizontal overflow globally */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; }
+* { max-width: 100%; }
+img, video, iframe { max-width: 100%; height: auto; }
+
+/* ── HAMBURGER BUTTON (hidden on desktop) ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .5rem 1rem .5rem .5rem;  /* right padding = hugs right edge */
+  width: 54px;
+  height: 44px;
+  flex-shrink: 0;
+  margin-left: auto;                /* pushes hamburger to far right on mobile */
+  z-index: 301;
+  position: relative;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: transform .3s ease, opacity .3s ease;
+  transform-origin: center;
+}
+/* Animated X when open */
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+/* White spans when overlay is open */
+.nav-toggle.is-open span { background: #fff; }
+
+/* ── MOBILE NAV OVERLAY ── */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--primary);
+  z-index: 300;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .35s;
+}
+.nav-overlay.is-open {
+  opacity: 1;
+  transform: translateX(0);
+}
+.nav-overlay ul {
+  list-style: none;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  padding: 0;
+}
+.nav-overlay ul li { width: 100%; text-align: center; }
+.nav-overlay ul li a {
+  display: block;
+  padding: 1rem 2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.9) !important;
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+  transition: color .2s, background .2s;
+}
+.nav-overlay ul li a:hover,
+.nav-overlay ul li a.active {
+  color: var(--secondary) !important;
+  background: rgba(255,255,255,.06);
+  border-bottom-color: rgba(255,255,255,.08) !important;
+  text-decoration: none;
+}
+.nav-overlay ul li:last-child a { border-bottom: none !important; }
+.nav-overlay .btn-cta {
+  margin-top: 1.5rem;
+  background: var(--secondary) !important;
+  border-radius: 8px !important;
+  padding: .9rem 2.5rem !important;
+  font-size: 1.1rem !important;
+  border: none !important;
+  color: #fff !important;
+}
+/* Close button inside overlay */
+.nav-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.7);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: .5rem;
+  transition: color .2s;
+}
+.nav-close:hover { color: var(--secondary); }
+
+
+/* ══════════════════════════════════════════
+   TABLET LANDSCAPE  ≤ 1024px
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  /* Tighten nav gap so items fit */
+  header { padding: 0 1.25rem; }
+  nav ul { gap: .55rem; }
+  nav ul li a { font-size: .78rem; }
+
+  /* Content wrap: narrower sidebar */
+  .content-wrap {
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+  }
+
+  /* Services: 2 columns */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   TABLET PORTRAIT  ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ─ Top bar ─ */
+  .top-bar {
+    flex-direction: column;
+    gap: .2rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    font-size: .72rem;
+  }
+
+  /* ─ Header ─ */
+  header { padding: 0; }
+  .header-inner { height: 72px; }
+
+  /* Show hamburger, hide desktop nav + desktop CTA */
+  .nav-toggle { display: flex; }
+  header > .header-inner > nav { display: none; }
+  .header-cta { display: none; }   /* CTA lives inside mobile overlay instead */
+
+  /* Logo: compact on tablet — image 48px, text visible */
+  .logo { padding-left: 1rem; gap: .65rem; }
+  .logo-img { height: 48px; }
+  .logo-divider { height: 30px; margin: 0 .1rem; }
+  .logo-text h1 { font-size: .88rem; }
+  .logo-text span { font-size: .62rem; }
+
+  /* ─ Hero ─ */
+  .hero { min-height: 380px; }
+  .hero-content { padding: 3rem 1.25rem; }
+  .hero-logo-img { max-width: 260px; width: 75%; }
+  .hero-btns { flex-direction: column; align-items: center; gap: .75rem; }
+  .btn-primary, .btn-outline {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: .85rem 1.5rem;
+  }
+
+  /* ─ Sections ─ */
+  section { padding: 2.5rem 1rem; }
+  .container { padding: 0; }
+
+  /* ─ Page hero ─ */
+  .page-hero { padding: 2.5rem 1rem; }
+  .page-hero h1 { font-size: 1.65rem; }
+  .page-hero .tagline { font-size: .95rem; }
+
+  /* ─ Content + Sidebar: stack ─ */
+  .content-wrap {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  /* Sidebar goes below content */
+  .sidebar { order: 2; }
+  .main-content { order: 1; }
+
+  /* ─ Override inline 2-col grids ─ */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 280px"],
+  [style*="grid-template-columns:1fr 280px"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* ─ Services grid: 1 column ─ */
+  .services-grid { grid-template-columns: 1fr; }
+
+  /* ─ Treatments grid: 2 col ─ */
+  .treatments-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+
+  /* ─ Doctor card: stack ─ */
+  .doctor-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  .doctor-avatar { width: 70px; height: 70px; font-size: 1.75rem; }
+  .doctor-info .title { justify-content: center; }
+
+  /* ─ Typography ─ */
+  .section-title { font-size: 1.5rem; }
+  .main-content h2 { font-size: 1.35rem; }
+  .main-content h3 { font-size: 1.05rem; }
+
+  /* ─ Footer ─ */
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  /* ─ Form rows ─ */
+  .form-row { grid-template-columns: 1fr !important; gap: 0; }
+
+  /* ─ Team grid ─ */
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ─ Rights grid ─ */
+  .rights-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ─ Info box ─ */
+  .info-box { padding: 1rem 1.1rem; }
+}
+
+
+/* ══════════════════════════════════════════
+   MOBILE  ≤ 480px
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* ─ Top bar: show only phone + WA ─ */
+  .top-bar span:first-child { display: none; }
+
+  /* ─ Logo: phone — image + name, no subtitle ─ */
+  .logo { padding-left: .75rem; gap: .5rem; }
+  .logo-img { height: 40px; }
+  .logo-divider { display: none; }
+  .logo-text h1 { font-size: .82rem; white-space: normal; line-height: 1.2; }
+  .logo-text span { display: none; }
+
+  /* ─ Hero ─ */
+  .hero { min-height: 320px; }
+  .hero-content { padding: 2.5rem 1rem; }
+  .hero-logo-img { max-width: 220px; width: 80%; }
+  .hero-divider { margin-bottom: 1.5rem; }
+
+  /* ─ Section padding ─ */
+  section { padding: 2rem .75rem; }
+  .page-hero { padding: 2rem .75rem; }
+
+  /* ─ Treatments grid: single col ─ */
+  .treatments-grid { grid-template-columns: 1fr; }
+
+  /* ─ Footer: single col ─ */
+  .footer-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+
+  /* ─ Team grid: single col ─ */
+  .team-grid { grid-template-columns: 1fr; }
+
+  /* ─ Rights grid (privacidade): single col ─ */
+  .rights-grid { grid-template-columns: 1fr; }
+
+  /* ─ Privacy table: scroll ─ */
+  .privacy-content table { display: block; overflow-x: auto; }
+
+  /* ─ Buttons ─ */
+  .btn-primary, .btn-outline, .btn-marcacao {
+    width: 100%;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .hero-btns { gap: .65rem; }
+
+  /* ─ Service cards ─ */
+  .service-card { padding: 1.5rem 1.25rem; }
+  .service-card .icon { font-size: 2rem; }
+
+  /* ─ Sidebar card padding ─ */
+  .sidebar-card { padding: 1.1rem 1rem; }
+
+  /* ─ Section titles ─ */
+  .section-title { font-size: 1.3rem; }
+  .main-content h2 { font-size: 1.2rem; }
+
+  /* ─ Contact blocks (contactos.html) ─ */
+  .contact-block { flex-direction: column; gap: .5rem; }
+  .contact-icon { font-size: 1.5rem; }
+
+  /* ─ WhatsApp float position ─ */
+  .whatsapp-float { bottom: 16px; right: 16px; }
+
+  /* ─ Inline values/grids override ─ */
+  [style*="display:grid"],
+  [style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   SMALL MOBILE  ≤ 360px
+══════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .logo-text h1 { font-size: .82rem; }
+  body { font-size: 15px; }
+  section { padding: 1.75rem .6rem; }
+  .hero-logo-img { max-width: 190px; }
+}
+
