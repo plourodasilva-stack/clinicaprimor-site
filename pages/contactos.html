@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ═══ SEO META ═══ -->
-  <title>Contactos e Marcações | Clínica Dr. Primor da Silva — Santa Cruz, Torres Vedras</title>
-  <meta name="description" content="Marque a sua consulta na Clínica Dr. Primor da Silva em Santa Cruz, Torres Vedras. Telefone, e-mail, formulário de marcação online e localização. Medicina Geral, Psicologia, Estética, Fisioterapia e mais." />
+o. Medicina Geral, Psicologia, Estética, Fisioterapia e mais." />
   <meta name="keywords" content="marcar consulta Santa Cruz Torres Vedras, contacto clínica Santa Cruz, clínica médica Santa Cruz morada, Clínica Dr Primor da Silva telefone" />
   <link rel="canonical" href="https://www.clinicadrprimor.pt/pages/contactos.html" />
 
@@ -65,14 +57,6 @@
     .contact-block h4 { color: var(--primary); margin-bottom: .25rem; font-size: 1rem; }
     .contact-block p, .contact-block a { font-size: .95rem; color: #555; }
   </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ1Z798HLC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RZ1Z798HLC');
-</script>
 </head>
 <body>
 
@@ -159,7 +143,12 @@
         <h2>Marque a sua consulta online</h2>
         <p>Preencha o formulário abaixo para solicitar uma marcação. Entraremos em contacto para confirmar a data e hora disponíveis. Para marcações urgentes, contacte-nos directamente por telefone.</p>
 
-        <form action="#" method="POST" style="margin-top: 1.5rem;">
+        <form action="https://formspree.io/f/maqgyjej" method="POST" style="margin-top: 1.5rem;">
+
+          <!-- Formspree: redirecionar para página de confirmação após envio -->
+          <input type="hidden" name="_next" value="https://www.clinicadrprimor.pt/pages/obrigado.html" />
+          <input type="hidden" name="_subject" value="Nova marcação de consulta — Clínica Dr. Primor da Silva" />
+          <input type="hidden" name="_language" value="pt" />
 
           <div class="form-row">
             <div class="form-group">
